@@ -75,12 +75,12 @@ class Game
 
   def print_welcomes
     puts "\n\n ====== Hello! ======"
-    puts "This game - rock, scissors, paper.\n\n"
+    puts "This game - rock, scissors and paper.\n\n"
   end
 
   def print_user_messages
     puts "\nEnter your value"
-    puts "r - (rock), s - (scissors), p - (paper)"
+    puts "r - (rock), s - (scissors) or p - (paper)"
   end
 
   def option_valid?(option)
