@@ -37,7 +37,7 @@ class Game
   end
 
   def set_user_value
-    self.user_value = get_user_value_from_stdin
+    self.user_value = ''
 
     self.user_value = get_user_value_from_stdin until option_valid?(user_value)
   end
