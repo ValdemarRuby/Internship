@@ -9,7 +9,7 @@ while game.in_progress?
   game.start_game
 
   # check result
-  check_result(game)
+  assign_result(game)
   print_result(game)
 
   # continue game or exit?

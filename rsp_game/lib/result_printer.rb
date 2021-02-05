@@ -3,14 +3,8 @@ module Game::ResultPrinter
 
   attr_accessor :result
 
-  def check_result(game)
-    self.result = if game.user_value == game.computer_value
-                    'It is draw'
-                  elsif user_win?(game)
-                    'User win!'
-                  else
-                    'Computer win!'
-                  end
+  def assign_result(game)
+    self.result = check_result(game)
   end
 
   def print_result(game)
@@ -19,6 +13,20 @@ module Game::ResultPrinter
   end
 
   private
+
+  def check_result(game)
+    return 'User win!' if user_win?(game)
+
+    if draw?(game)
+      return 'It is draw'
+    else
+      return 'Computer win!'
+    end
+  end
+
+  def draw?(game)
+    game.user_value == game.computer_value
+  end
 
   def user_win?(game)
     WINNING_COMBINATIONS_FOR_USER.include?([game.user_value, game.computer_value])

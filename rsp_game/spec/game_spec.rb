@@ -17,7 +17,7 @@ describe Game do
       game.computer_value = 'p'
       game.user_value = 's'
 
-      check_result(game)
+      assign_result(game)
       expect(result).to eq('User win!')
     end
 
@@ -25,7 +25,7 @@ describe Game do
       game.computer_value = 'r'
       game.user_value = 's'
 
-      check_result(game)
+      assign_result(game)
       expect(result).to eq('Computer win!')
     end
 
@@ -33,7 +33,7 @@ describe Game do
       game.computer_value = 'p'
       game.user_value = 'p'
 
-      check_result(game)
+      assign_result(game)
       expect(result).to eq('It is draw')
     end
   end
