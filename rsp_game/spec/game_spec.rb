@@ -1,40 +1,40 @@
 require 'game'
 require 'result_printer'
 
-describe 'Game' do
+include Game::ResultPrinter
+
+describe Game do
   let(:game) { Game.new }
-  let(:printer) { ResultPrinter.new(game) }
 
-  it 'user wins the game' do
-    expect(game.status).to eq :in_progress
-
-    game.start_game(set_computer_value = 'r', set_user_value = 'p')
-    printer.check_result
-
-    expect(game.user_value).to eq('p')
-    expect(game.computer_value).to eq('r')
-    expect(printer.result).to eq('User win!')
+  describe 'after the start of the game' do
+    it 'should be a status in_progress' do
+      expect(game.status).to eq :in_progress
+    end
   end
 
-  it 'computer wins the game' do
-    expect(game.status).to eq :in_progress
+  describe 'checking game results' do
+    it 'should be a win for the user' do
+      game.computer_value = 'p'
+      game.user_value = 's'
 
-    game.start_game(set_computer_value = 's', set_user_value = 'p')
-    printer.check_result
+      assign_result(game)
+      expect(result).to eq('User win!')
+    end
 
-    expect(game.user_value).to eq('p')
-    expect(game.computer_value).to eq('s')
-    expect(printer.result).to eq('Computer win!')
-  end
+    it 'should be a win for the computer' do
+      game.computer_value = 'r'
+      game.user_value = 's'
 
-  it 'dead heat the game' do
-    expect(game.status).to eq :in_progress
+      assign_result(game)
+      expect(result).to eq('Computer win!')
+    end
 
-    game.start_game(set_computer_value = 'r', set_user_value = 'r')
-    printer.check_result
+    it 'should be a draw' do
+      game.computer_value = 'p'
+      game.user_value = 'p'
 
-    expect(game.user_value).to eq('r')
-    expect(game.computer_value).to eq('r')
-    expect(printer.result).to eq('Dead heat')
+      assign_result(game)
+      expect(result).to eq('It is draw')
+    end
   end
 end
